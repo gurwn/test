@@ -193,47 +193,40 @@ export default function AnalysisWizard() {
                             ))}
                         </div>
 
-                        {/* AI Analysis Trigger */}
                         <div className="space-y-3">
-                            {profile.images?.front && !isLoading && (
-                                <Button
-                                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
-                                    onClick={async () => {
-                                        setIsLoading(true);
-                                        try {
-                                            const res = await fetch('/api/analyze-face', {
-                                                method: 'POST',
-                                                headers: { 'Content-Type': 'application/json' },
-                                                body: JSON.stringify({ image: profile.images?.front })
-                                            });
-                                            const data = await res.json();
-                                            if (data.faceShape) {
-                                                setProfile(p => ({
-                                                    ...p,
-                                                    gender: data.gender || p.gender,
-                                                    faceShape: data.faceShape.toLowerCase() as any,
-                                                    hairCondition: { ...p.hairCondition, texture: data.hairTexture || 'straight' }
-                                                }));
-                                                alert(`AI Analysis Complete!\nDetected: ${data.gender}, ${data.faceShape}, ${data.hairTexture}`);
-                                            }
-                                        } catch (e) {
-                                            console.error(e);
-                                            alert("AI Analysis Failed. Please try again.");
-                                        } finally {
-                                            setIsLoading(false);
-                                        }
-                                    }}
-                                >
-                                    <Sparkles className="w-4 h-4 mr-2" />
-                                    AI로 얼굴형 자동 분석하기
-                                </Button>
-                            )}
+                            <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 p-4 rounded-lg flex gap-3 items-start">
+                                <div><Sparkles className="w-5 h-5 text-indigo-400 mt-1" /></div>
+                                <div className="space-y-1">
+                                    <h4 className="text-sm font-bold text-indigo-300">AI Auto-Analysis Active</h4>
+                                    <p className="text-xs text-muted-foreground">
+                                        Photos are automatically analyzed to pre-fill your hair profile.
+                                        <br />Detailed reports are available for <span className="text-yellow-400 font-bold">Premium Subscribers</span>.
+                                    </p>
+                                </div>
+                            </div>
 
-                            <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg flex gap-3 items-start">
-                                <div className="bg-blue-500 rounded-full p-1 mt-0.5"><Sparkles className="w-3 h-3 text-white" /></div>
-                                <p className="text-xs text-blue-200 leading-relaxed">
-                                    Tip: 이마 라인이 보이게 앞머리를 걷고 찍으면 <strong>얼굴형 분석 정확도</strong>가 200% 올라갑니다!
-                                </p>
+                            {/* Premium Teaser (Blurred) */}
+                            <div className="relative group overflow-hidden rounded-xl border border-white/10 bg-black/20 p-6 space-y-4">
+                                <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] z-10 flex flex-col items-center justify-center p-6 text-center">
+                                    <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-3">
+                                        <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                                    </div>
+                                    <h3 className="font-bold text-white mb-1">Unlock Premium Analysis</h3>
+                                    <p className="text-xs text-gray-400 mb-4">Get detailed face symmetry report & personal color analysis.</p>
+                                    <Button size="sm" className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold border-0">
+                                        Subscribe - $2.99/mo
+                                    </Button>
+                                </div>
+
+                                {/* Fake Content Behind Blur */}
+                                <div className="space-y-4 opacity-50">
+                                    <div className="h-4 w-3/4 bg-white/20 rounded" />
+                                    <div className="h-4 w-1/2 bg-white/20 rounded" />
+                                    <div className="grid grid-cols-2 gap-2">
+                                        <div className="h-24 bg-white/10 rounded" />
+                                        <div className="h-24 bg-white/10 rounded" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
