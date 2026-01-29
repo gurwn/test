@@ -48,6 +48,40 @@ export default function VirtualStyler({ userImage, styleOverlay }: VirtualStyler
         setIsDragging(false);
     };
 
+
+    const [generatedOverlay, setGeneratedOverlay] = useState<string | null>(null);
+    const [isGenerating, setIsGenerating] = useState(false);
+
+    const activeOverlay = generatedOverlay || styleOverlay;
+
+    const handleGenerate = async () => {
+        setIsGenerating(true);
+        try {
+            // Extract style name from props if possible, or use a generic prompt
+            // Since we don't have the style name prop here, we assume the user wants a variation of the current overlay
+            // MVP: Just ask for "Trendy Hairstyle"
+            const prompt = "Modern stylish hair wig, front view, professional photography";
+
+            const res = await fetch('/api/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt })
+            });
+
+            if (!res.ok) throw new Error('Generation failed');
+
+            const data = await res.json();
+            if (data.image) {
+                setGeneratedOverlay(data.image);
+            }
+        } catch (e) {
+            console.error(e);
+            alert("AI Generation failed. Please check API Key or try again.");
+        } finally {
+            setIsGenerating(false);
+        }
+    };
+
     return (
         <div className="flex flex-col h-full bg-black text-white">
             {/* Canvas Area */}
@@ -77,22 +111,20 @@ export default function VirtualStyler({ userImage, styleOverlay }: VirtualStyler
                     onMouseDown={handleDragStart}
                     onTouchStart={handleDragStart}
                 >
-                    {/* 
-             Here is the TRICK for MVP: 
-             If we don't have transparent PNGs, we can use a "mask" image or just a simple placeholder shape.
-             Or we display the reference style image with some opacity/blend mode.
-             I will use the style image with `mix-blend-mode: hard-light` as a "preview" 
-             OR just display a generic "Hair Outline" if real assets are missing.
-             For now, I'll use the passed image.
-           */}
-                    <img
-                        src={styleOverlay}
-                        className="w-full h-auto drop-shadow-2xl"
-                        style={{ filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.5))' }} // Basic attempt
-                        // In a real app, these would be transparent PNGs.
-                        onError={(e) => e.currentTarget.src = 'https://purepng.com/public/uploads/large/purepng.com-hairhair-strands-men-people-shock-users-hair-man-male-boy-251520164627h8h2c.png'}
-                        alt="Hair Overlay"
-                    />
+                    {isGenerating ? (
+                        <div className="flex items-center justify-center h-40 w-40 bg-black/50 rounded-full mx-auto animate-pulse border border-indigo-500/50">
+                            <span className="text-xs text-indigo-300">Generating...</span>
+                        </div>
+                    ) : (
+                        <img
+                            src={activeOverlay}
+                            className="w-full h-auto drop-shadow-2xl mix-blend-hard-light"
+                            // mix-blend logic to remove white background simple hack
+                            style={{ filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.5))' }}
+                            onError={(e) => e.currentTarget.src = 'https://purepng.com/public/uploads/large/purepng.com-hairhair-strands-men-people-shock-users-hair-man-male-boy-251520164627h8h2c.png'}
+                            alt="Hair Overlay"
+                        />
+                    )}
 
                     {/* Interaction Ring */}
                     <div className="absolute inset-0 border-2 border-indigo-500/50 rounded-lg pointer-events-none opacity-0 hover:opacity-100 transition-opacity" />
@@ -135,9 +167,12 @@ export default function VirtualStyler({ userImage, styleOverlay }: VirtualStyler
                     <Button variant="outline" className="w-full" onClick={() => { setScale(1); setRotation(0); setPosition({ x: 0, y: 0 }); }}>
                         Reset
                     </Button>
-                    <Button className="w-full bg-indigo-600 hover:bg-indigo-700">
-                        <Download className="w-4 h-4 mr-2" />
-                        Save
+                    <Button
+                        className="w-full bg-gradient-to-r from-pink-500 to-indigo-500 hover:from-pink-600 hover:to-indigo-600 border-0"
+                        onClick={handleGenerate}
+                        disabled={isGenerating}
+                    >
+                        {isGenerating ? 'Generating...' : '✨ AI Generate'}
                     </Button>
                 </div>
             </div>

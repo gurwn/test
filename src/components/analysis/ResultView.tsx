@@ -127,6 +127,36 @@ export default function ResultView() {
                     </Card>
                 </div>
 
+
+                {/* 1.5 Salon Recommendations (Mock) */}
+                {results.recommended.find(r => r.id === selectedStyle.id)?.recommendedSalons && (
+                    <div className="pt-4 border-t border-white/10 space-y-3">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-indigo-300">
+                            <MapPin className="w-4 h-4" />
+                            <span>Where to get this cut (Partner Salons)</span>
+                        </div>
+                        <div className="space-y-3">
+                            {results.recommended.find(r => r.id === selectedStyle.id)?.recommendedSalons!.map((salon, idx) => (
+                                <div key={idx} className="flex gap-3 items-center bg-black/20 p-2 rounded-lg border border-white/5 hover:bg-white/5 transition-colors cursor-pointer">
+                                    <img src={salon.imageUrl} alt={salon.name} className="w-12 h-12 rounded-full object-cover border border-white/10" />
+                                    <div className="flex-1">
+                                        <div className="flex justify-between items-center">
+                                            <h4 className="text-sm font-bold text-white">{salon.name}</h4>
+                                            <span className="text-xs text-yellow-400 flex items-center gap-0.5">
+                                                <Star className="w-3 h-3 fill-yellow-400" /> {salon.rating}
+                                            </span>
+                                        </div>
+                                        <div className="flex justify-between items-center text-xs text-muted-foreground mt-0.5">
+                                            <span>{salon.location}</span>
+                                            <span className="text-indigo-400 font-medium">{salon.price}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
                 {/* 2. Virtual Try-On CTA */}
                 <Dialog>
                     <DialogTrigger asChild>

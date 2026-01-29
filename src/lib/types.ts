@@ -26,6 +26,14 @@ export interface UserProfile {
   };
 }
 
+export interface Salon {
+  name: string;
+  location: string;
+  price: string;
+  imageUrl: string;
+  rating: number;
+}
+
 export interface HairStyle {
   id: string;
   name: string;
@@ -33,15 +41,17 @@ export interface HairStyle {
   category: string; // e.g., "Cut", "Perm", "Color"
   description: string;
   tags: string[]; // e.g., ['can-cover-wide-forehead', 'good-for-round-face']
-  
+
   // Logic Weights (0 = neutral, 1 = recommended, -1 = avoid)
   faceShapeWeights: Record<FaceShape, number>;
   textureWeights: Record<HairTexture, number>;
-  
+
   // For UI
-  imageUrl: string; 
+  imageUrl: string;
   salonRequest: string; // "미용실 요청 멘트"
   maintenanceTips: string;
+
+  recommendedSalons?: Salon[]; // New field for Salon Recommendation
 }
 
 export interface RecommendationResult {

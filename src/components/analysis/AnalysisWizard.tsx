@@ -109,6 +109,7 @@ export default function AnalysisWizard() {
                     </div>
                 );
 
+
             case 1: // Photos
                 return (
                     <div className="space-y-6 animate-in-fade">
@@ -128,16 +129,53 @@ export default function AnalysisWizard() {
                                         onChange={(e) => {
                                             const file = e.target.files?.[0];
                                             if (file) {
-                                                const url = URL.createObjectURL(file);
-                                                setProfile(prev => ({
-                                                    ...prev,
-                                                    images: { ...prev.images!, [angle]: url }
-                                                }));
+                                                const reader = new FileReader();
+                                                reader.onloadend = async () => {
+                                                    const url = reader.result as string;
+                                                    setProfile(prev => ({
+                                                        ...prev,
+                                                        images: { ...prev.images!, [angle]: url }
+                                                    }));
+
+                                                    // Auto-Analyze if Front photo
+                                                    if (angle === 'front') {
+                                                        setIsLoading(true);
+                                                        try {
+                                                            const res = await fetch('/api/analyze-face', {
+                                                                method: 'POST',
+                                                                headers: { 'Content-Type': 'application/json' },
+                                                                body: JSON.stringify({ image: url })
+                                                            });
+                                                            const data = await res.json();
+                                                            if (data.faceShape) {
+                                                                setProfile(p => ({
+                                                                    ...p,
+                                                                    gender: data.gender || p.gender,
+                                                                    faceShape: data.faceShape.toLowerCase() || 'oval',
+                                                                    hairCondition: { ...p.hairCondition, texture: data.hairTexture || 'straight' }
+                                                                }));
+                                                            }
+                                                        } catch (e) {
+                                                            console.error("Auto-analysis failed", e);
+                                                        } finally {
+                                                            setIsLoading(false);
+                                                        }
+                                                    }
+                                                };
+                                                reader.readAsDataURL(file);
                                             }
                                         }}
                                     />
                                     {profile.images?.[angle] ? (
-                                        <img src={profile.images[angle]} alt={angle} className="w-full h-full object-cover" />
+                                        <>
+                                            <img src={profile.images[angle]} alt={angle} className="w-full h-full object-cover" />
+                                            {isLoading && angle === 'front' && (
+                                                <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center animate-in fade-in">
+                                                    <Sparkles className="w-8 h-8 text-indigo-400 animate-spin mb-2" />
+                                                    <span className="text-xs font-bold text-indigo-200">AI Analyzing...</span>
+                                                </div>
+                                            )}
+                                        </>
                                     ) : (
                                         <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
                                             <Camera className="w-8 h-8 mb-2 opacity-50" />
@@ -155,11 +193,48 @@ export default function AnalysisWizard() {
                             ))}
                         </div>
 
-                        <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg flex gap-3 items-start">
-                            <div className="bg-blue-500 rounded-full p-1 mt-0.5"><Sparkles className="w-3 h-3 text-white" /></div>
-                            <p className="text-xs text-blue-200 leading-relaxed">
-                                Tip: 이마 라인이 보이게 앞머리를 걷고 찍으면 <strong>얼굴형 분석 정확도</strong>가 200% 올라갑니다!
-                            </p>
+                        {/* AI Analysis Trigger */}
+                        <div className="space-y-3">
+                            {profile.images?.front && !isLoading && (
+                                <Button
+                                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
+                                    onClick={async () => {
+                                        setIsLoading(true);
+                                        try {
+                                            const res = await fetch('/api/analyze-face', {
+                                                method: 'POST',
+                                                headers: { 'Content-Type': 'application/json' },
+                                                body: JSON.stringify({ image: profile.images?.front })
+                                            });
+                                            const data = await res.json();
+                                            if (data.faceShape) {
+                                                setProfile(p => ({
+                                                    ...p,
+                                                    gender: data.gender || p.gender,
+                                                    faceShape: data.faceShape.toLowerCase() as any,
+                                                    hairCondition: { ...p.hairCondition, texture: data.hairTexture || 'straight' }
+                                                }));
+                                                alert(`AI Analysis Complete!\nDetected: ${data.gender}, ${data.faceShape}, ${data.hairTexture}`);
+                                            }
+                                        } catch (e) {
+                                            console.error(e);
+                                            alert("AI Analysis Failed. Please try again.");
+                                        } finally {
+                                            setIsLoading(false);
+                                        }
+                                    }}
+                                >
+                                    <Sparkles className="w-4 h-4 mr-2" />
+                                    AI로 얼굴형 자동 분석하기
+                                </Button>
+                            )}
+
+                            <div className="bg-blue-500/10 border border-blue-500/20 p-4 rounded-lg flex gap-3 items-start">
+                                <div className="bg-blue-500 rounded-full p-1 mt-0.5"><Sparkles className="w-3 h-3 text-white" /></div>
+                                <p className="text-xs text-blue-200 leading-relaxed">
+                                    Tip: 이마 라인이 보이게 앞머리를 걷고 찍으면 <strong>얼굴형 분석 정확도</strong>가 200% 올라갑니다!
+                                </p>
+                            </div>
                         </div>
                     </div>
                 );

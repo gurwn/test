@@ -14,6 +14,10 @@ export const HAIRSTYLES: HairStyle[] = [
         maintenanceTips: '왁스로 윗머리만 가볍게 올려주면 끝. 3주에 한 번 커트 추천.',
         faceShapeWeights: { oval: 1, round: 1, square: 1, long: 0, triangle: 0, heart: 0, diamond: 0 },
         textureWeights: { straight: 1, wavy: 1, curly: 0, coily: -1 },
+        recommendedSalons: [
+            { name: "JUNO Hair (Gangnam)", location: "Gangnam-gu, Seoul", price: "₩35,000~", rating: 4.8, imageUrl: "https://placehold.co/100x100/png?text=Juno" },
+            { name: "Chahong Room", location: "Sinsa, Seoul", price: "₩55,000~", rating: 4.9, imageUrl: "https://placehold.co/100x100/png?text=Chahong" },
+        ]
     },
     {
         id: 'm-drop-cut',
