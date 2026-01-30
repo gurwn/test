@@ -12,7 +12,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LANGUAGES = [
+export const LANGUAGES: { code: Language; label: string; flag: string; }[] = [
     { code: 'ko', label: '한국어', flag: '🇰🇷' },
     { code: 'en', label: 'English', flag: '🇺🇸' },
     { code: 'ja', label: '日本語', flag: '🇯🇵' },
