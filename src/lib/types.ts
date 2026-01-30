@@ -53,7 +53,9 @@ export interface HairStyle {
   // For UI
   imageUrl: string;
   salonRequest: string; // "미용실 요청 멘트"
+  salonRequestEn?: string; // English localized salon request
   maintenanceTips: string;
+  maintenanceTipsEn?: string; // English localized maintenance tips
 
   recommendedSalons?: Salon[]; // New field for Salon Recommendation
 }
