@@ -32,6 +32,7 @@ export interface Salon {
   price: string;
   imageUrl: string;
   rating: number;
+  country: string; // 'kr' | 'us'
 }
 
 export interface HairStyle {
@@ -40,6 +41,9 @@ export interface HairStyle {
   gender: Gender;
   category: string; // e.g., "Cut", "Perm", "Color"
   description: string;
+  descriptionKo?: string; // Korean description
+  nameKo?: string;        // Korean Name
+
   tags: string[]; // e.g., ['can-cover-wide-forehead', 'good-for-round-face']
 
   // Logic Weights (0 = neutral, 1 = recommended, -1 = avoid)

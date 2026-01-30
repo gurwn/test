@@ -10,11 +10,7 @@ export async function POST(req: Request) {
         }
 
 
-        // Note: Imagen 3 endpoint on AI Studio is 'models/imagen-3.0-generate-001'
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${apiKey}`;
-
         // Advanced Prompt for "Natural Synthesis"
-        // We try to describe the person + the new hair + consistent lighting
         const finalPrompt = `
       Professional close-up portrait of a person.
       Description of person: ${description || 'Natural skin texture, realistic face'}.
@@ -25,30 +21,36 @@ export async function POST(req: Request) {
     `.trim();
 
         const body = {
-            instances: [
-                {
-                    prompt: finalPrompt,
-                }
-            ],
+            instances: [{ prompt: finalPrompt }],
             parameters: {
                 sampleCount: 1,
                 aspectRatio: "1:1",
-                // requesting image/png if supported, otherwise default
             }
         };
 
-        const response = await fetch(url, {
+        // Try Imagen 4.0 first
+        let url = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`;
+
+        let response = await fetch(url, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
         });
 
+        // Fallback to Imagen 3.0 if 4.0 fails (e.g., 404 or 400)
+        if (!response.ok) {
+            console.warn(`Imagen 4.0 failed with status ${response.status}. Trying Imagen 3.0...`);
+            url = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${apiKey}`;
+            response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            });
+        }
+
         if (!response.ok) {
             const errorText = await response.text();
-            console.error("Google API Error:", errorText);
-            // Fallback or specific error handling
+            console.error("Google Imagen API Error:", errorText);
             return NextResponse.json({ error: 'Failed to generate image', details: errorText }, { status: response.status });
         }
 
