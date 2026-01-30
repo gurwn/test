@@ -1,3 +1,4 @@
+export type StyleType =
     | 'as_perm'
     | 'garma_perm'
     | 'see_through_cut'
