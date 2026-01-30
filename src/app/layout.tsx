@@ -30,6 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google AdSense Verification */}
+        <meta name="google-adsense-account" content="ca-pub-6893226739893280" />
         {/* Google AdSense Script */}
         <Script
           id="adsbygoogle-init"
