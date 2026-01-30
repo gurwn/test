@@ -21,7 +21,7 @@ declare global {
 export default function GoogleAdSense({
     className,
     style,
-    client = "ca-pub-XXXXXXXXXXXXXXXX", // User needs to replace this
+    client = "ca-pub-6893226739893280", // User's AdSense ID
     slot,
     format = 'auto',
     responsive = 'true',
