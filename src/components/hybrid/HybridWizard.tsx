@@ -243,6 +243,8 @@ export default function HybridWizard() {
     if (step >= 3 && step <= 5) {
         const qIndex = step - 3;
         const q = activeQuestions[qIndex];
+        const { language } = useLanguage();
+        const isKo = language === 'ko';
 
         return (
             <div className="space-y-6 animate-in fade-in slide-in-from-right-4 w-full max-w-md">
@@ -251,17 +253,23 @@ export default function HybridWizard() {
                     <span>{qIndex + 1 + (step === 2 ? 1 : 1)} / {activeQuestions.length + 1}</span>
                 </div>
 
-                <h2 className="text-2xl font-bold mb-8">{q.title}</h2>
+                <h2 className="text-2xl font-bold mb-8">
+                    {(isKo && q.titleKo) ? q.titleKo : q.title}
+                </h2>
 
                 <div className="grid gap-3">
                     {q.options.map(opt => (
                         <button
                             key={opt.value}
                             onClick={() => handleSurveyAnswer(opt.value)}
-                            className="w-full p-4 text-left bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group"
+                            className="w-full p-4 text-left bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 rounded-xl transition-all group"
                         >
-                            <div className="font-bold text-lg mb-1 group-hover:text-indigo-400 transition-colors">{opt.label}</div>
-                            <div className="text-sm text-muted-foreground">{opt.description}</div>
+                            <div className="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors">
+                                {(isKo && opt.labelKo) ? opt.labelKo : opt.label}
+                            </div>
+                            <div className="text-sm text-slate-500 dark:text-muted-foreground">
+                                {(isKo && opt.descriptionKo) ? opt.descriptionKo : opt.description}
+                            </div>
                         </button>
                     ))}
                 </div>

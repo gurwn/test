@@ -128,8 +128,8 @@ export default function ResultView() {
 
                 {/* 1.5 Salon Recommendations (Mock) */}
                 {results.recommended.find(r => r.id === selectedStyle.id)?.recommendedSalons && (
-                    <div className="pt-4 border-t border-white/10 space-y-3">
-                        <div className="flex items-center gap-2 text-sm font-semibold text-indigo-300">
+                    <div className="pt-4 border-t border-slate-200 dark:border-white/10 space-y-3">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-300">
                             <MapPin className="w-4 h-4" />
                             <span>{t('findSalon')} (Partner Salons)</span>
                         </div>
@@ -141,18 +141,18 @@ export default function ResultView() {
                                     return salon.country === targetCountry;
                                 })
                                 .map((salon, idx) => (
-                                    <div key={idx} className="flex gap-3 items-center bg-black/20 p-2 rounded-lg border border-white/5 hover:bg-white/5 transition-colors cursor-pointer">
-                                        <img src={salon.imageUrl} alt={salon.name} className="w-12 h-12 rounded-full object-cover border border-white/10" />
+                                    <div key={idx} className="flex gap-3 items-center bg-slate-50 dark:bg-black/20 p-2 rounded-lg border border-slate-200 dark:border-white/5 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors cursor-pointer">
+                                        <img src={salon.imageUrl} alt={salon.name} className="w-12 h-12 rounded-full object-cover border border-slate-200 dark:border-white/10" />
                                         <div className="flex-1">
                                             <div className="flex justify-between items-center">
-                                                <h4 className="text-sm font-bold text-white">{salon.name}</h4>
-                                                <span className="text-xs text-yellow-400 flex items-center gap-0.5">
-                                                    <Star className="w-3 h-3 fill-yellow-400" /> {salon.rating}
+                                                <h4 className="text-sm font-bold text-slate-900 dark:text-white">{salon.name}</h4>
+                                                <span className="text-xs text-yellow-500 dark:text-yellow-400 flex items-center gap-0.5">
+                                                    <Star className="w-3 h-3 fill-yellow-500 dark:fill-yellow-400" /> {salon.rating}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center text-xs text-muted-foreground mt-0.5">
                                                 <span>{salon.location}</span>
-                                                <span className="text-indigo-400 font-medium">{salon.price}</span>
+                                                <span className="text-indigo-600 dark:text-indigo-400 font-medium">{salon.price}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -166,8 +166,8 @@ export default function ResultView() {
                     <div className="absolute top-0 right-0 p-2 opacity-50">
                         <Star className="w-12 h-12 text-yellow-500/20 fill-yellow-500/20" />
                     </div>
-                    <h3 className="text-xl font-bold text-yellow-400">{t('subscribeTitle')}</h3>
-                    <p className="text-sm text-yellow-200/80">
+                    <h3 className="text-xl font-bold text-yellow-600 dark:text-yellow-400">{t('subscribeTitle')}</h3>
+                    <p className="text-sm text-yellow-700/80 dark:text-yellow-200/80">
                         {t('subscribeDesc')}
                     </p>
                     <Button className="w-full bg-gradient-to-r from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700 text-black font-bold">
@@ -188,7 +188,7 @@ export default function ResultView() {
                                 {t('aiGenerate')}
                             </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-md h-[80vh] p-0 bg-black border-white/10">
+                        <DialogContent className="max-w-md h-[80vh] p-0 bg-background border-border">
                             <VirtualStyler userImage={profile.images?.front || ''} styleOverlay={selectedStyle.imageUrl} />
                         </DialogContent>
                     </Dialog>
@@ -196,7 +196,7 @@ export default function ResultView() {
                     <Button
                         size="lg"
                         onClick={() => setShowPaywall(true)}
-                        className="w-full h-14 text-lg font-bold bg-gray-800 hover:bg-gray-700 border border-white/10 text-gray-300"
+                        className="w-full h-14 text-lg font-bold bg-slate-900 border-slate-800 text-white dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-white/10 dark:text-gray-300"
                     >
                         <Sparkles className="w-5 h-5 mr-2 opacity-50" />
                         {t('aiGenerate')} (Premium)
@@ -205,11 +205,11 @@ export default function ResultView() {
 
                 {/* Paywall Modal */}
                 <Dialog open={showPaywall} onOpenChange={setShowPaywall}>
-                    <DialogContent className="max-w-md bg-zinc-900 border-yellow-500/20 text-center space-y-4">
+                    <DialogContent className="max-w-md bg-white dark:bg-zinc-900 border-yellow-500/20 text-center space-y-4">
                         <div className="mx-auto w-16 h-16 bg-yellow-500/10 rounded-full flex items-center justify-center mb-2">
                             <Star className="w-8 h-8 text-yellow-500 fill-yellow-500" />
                         </div>
-                        <h2 className="text-2xl font-bold text-white">{t('subscribeTitle')}</h2>
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{t('subscribeTitle')}</h2>
                         <p className="text-muted-foreground">
                             AI 가상 착용 기능은 프리미엄 회원 전용입니다.<br />
                             지금 구독하고 나에게 딱 맞는 스타일을 찾아보세요!
@@ -228,7 +228,7 @@ export default function ResultView() {
                 </Dialog>
 
                 {/* 2. Salon Request Template */}
-                <Card className="bg-zinc-900/50 border-white/10">
+                <Card className="bg-slate-50 dark:bg-zinc-900/50 border-slate-200 dark:border-white/10">
                     <CardHeader className="pb-3">
                         <CardTitle className="text-lg flex items-center gap-2">
                             ✂️ {t('requestTemplate')}
@@ -236,7 +236,7 @@ export default function ResultView() {
                         <CardDescription>{t('showDesigner')}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <div className="p-4 bg-white text-black rounded-lg font-mono text-sm shadow-inner relative overflow-hidden">
+                        <div className="p-4 bg-white text-black rounded-lg font-mono text-sm shadow-inner relative overflow-hidden border border-slate-200">
                             <div className="absolute top-0 right-0 p-2 opacity-50">
                                 <Share2 className="w-4 h-4" />
                             </div>
@@ -251,7 +251,7 @@ export default function ResultView() {
                                 <span>{new Date().toLocaleDateString()}</span>
                             </div>
                         </div>
-                        <Button className="w-full bg-white text-black hover:bg-zinc-200" onClick={() => {
+                        <Button className="w-full bg-white text-black hover:bg-zinc-200 border border-slate-200" onClick={() => {
                             // Copy to clipboard or Share
                             navigator.share?.({
                                 title: 'HairFit Request',
@@ -273,11 +273,11 @@ export default function ResultView() {
                                 key={style.id}
                                 onClick={() => setSelectedStyle(style)}
                                 className={`p-3 rounded-xl border flex gap-4 cursor-pointer transition-all ${selectedStyle.id === style.id
-                                    ? 'bg-white/10 border-indigo-500'
-                                    : 'bg-transparent border-white/5 hover:bg-white/5'
+                                    ? 'bg-indigo-50 dark:bg-white/10 border-indigo-500'
+                                    : 'bg-transparent border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5'
                                     }`}
                             >
-                                <div className="w-16 h-16 rounded-lg bg-white/10 overflow-hidden shrink-0">
+                                <div className="w-16 h-16 rounded-lg bg-slate-200 dark:bg-white/10 overflow-hidden shrink-0">
                                     <img
                                         src={style.imageUrl}
                                         className="w-full h-full object-cover"
@@ -290,7 +290,7 @@ export default function ResultView() {
                                         <h4 className="font-semibold truncate">
                                             {(language === 'ko' && style.nameKo) ? style.nameKo : style.name}
                                         </h4>
-                                        <Badge variant="outline" className="text-[10px] h-5 px-1.5 border-green-500/50 text-green-400">9{5 - idx}%</Badge>
+                                        <Badge variant="outline" className="text-[10px] h-5 px-1.5 border-green-500/50 text-green-600 dark:text-green-400">9{5 - idx}%</Badge>
                                     </div>
                                     <p className="text-xs text-muted-foreground line-clamp-1">
                                         {(language === 'ko' && style.descriptionKo) ? style.descriptionKo : style.description}

@@ -19,23 +19,30 @@ export interface HairStyle {
     id: StyleType;
     name: string;
     nameKo: string;
-    description: string; // One-line summary for the card
-    tags: string[]; // "Recommended For" tags
-    badMatch: string[]; // "Avoid If" tags
+    description: string;
+    descriptionKo?: string; // Add descriptionKo
+    tags: string[]; // "Recommended For" (English)
+    tagsKo?: string[]; // "Recommended For" (Korean)
+    badMatch: string[]; // "Avoid If" (English)
+    badMatchKo?: string[]; // "Avoid If" (Korean)
     imagePath: string;
-    position: string; // e.g. "Standard of K-Perm"
+    position: string;
+    positionKo?: string; // Add positionKo
 }
 
 export type QuestionId = 'forehead' | 'vibe' | 'maintenance';
 
 export interface AnswerOption {
     value: string;
-    label: string;
-    description?: string;
+    label: string; // Default or English
+    labelKo?: string; // Korean
+    description?: string; // Default or English
+    descriptionKo?: string; // Korean
 }
 
 export interface Question {
     id: QuestionId;
-    title: string;
+    title: string; // Default or English
+    titleKo?: string; // Korean
     options: AnswerOption[];
 }

@@ -5,7 +5,7 @@ import { toPng } from 'html-to-image';
 import { HairStyle } from '@/lib/survey/types';
 import { Button } from '@/components/ui/button';
 import { Download, RotateCcw, Share2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ResultCardProps {
     styleData: HairStyle;
@@ -14,6 +14,15 @@ interface ResultCardProps {
 
 export default function ResultCard({ styleData, onReset }: ResultCardProps) {
     const cardRef = useRef<HTMLDivElement>(null);
+    const { t, language } = useLanguage();
+    const isKo = language === 'ko';
+
+    // Dynamic Data Selection
+    const activeName = (isKo && styleData.nameKo) ? styleData.nameKo : styleData.name;
+    const activeDescription = (isKo && styleData.descriptionKo) ? styleData.descriptionKo : styleData.description;
+    const activePosition = (isKo && styleData.positionKo) ? styleData.positionKo : styleData.position;
+    const activeTags = (isKo && styleData.tagsKo) ? styleData.tagsKo : styleData.tags;
+    const activeBadMatch = (isKo && styleData.badMatchKo) ? styleData.badMatchKo : styleData.badMatch;
 
     const handleDownload = useCallback(async () => {
         if (cardRef.current === null) return;
@@ -34,19 +43,19 @@ export default function ResultCard({ styleData, onReset }: ResultCardProps) {
             // Prefer native share if available (Mobile)
             if (navigator.share) {
                 await navigator.share({
-                    title: `HairFit - ${styleData.nameKo}`,
-                    text: `나에게 어울리는 헤어스타일은 ${styleData.nameKo}입니다! #HairFit`,
+                    title: `HairFit - ${activeName}`,
+                    text: `My HairFit Style is ${activeName}! #HairFit`,
                     url: window.location.href,
                 });
             } else {
                 // Fallback to clipboard for Desktop
                 await navigator.clipboard.writeText(window.location.href);
-                alert("링크가 복사되었습니다!");
+                alert("Link Copied!");
             }
         } catch (err) {
             console.error('Error sharing:', err);
         }
-    }, [styleData.nameKo]);
+    }, [activeName]);
 
     return (
         <div className="flex flex-col items-center w-full max-w-sm mx-auto space-y-6">
@@ -62,13 +71,13 @@ export default function ResultCard({ styleData, onReset }: ResultCardProps) {
                 {/* Header */}
                 <div className="relative z-10 text-center space-y-1 mt-4">
                     <div className="inline-block px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-bold tracking-wider uppercase">
-                        HairFit Type Indicator
+                        {t('hairFitTypeIndicator')}
                     </div>
                     <h2 className="text-3xl font-black text-slate-900 tracking-tight leading-none">
-                        {styleData.nameKo.split(' (')[0]}
+                        {activeName.split(' (')[0]}
                     </h2>
                     <p className="text-sm font-semibold text-slate-500">
-                        "{styleData.position}"
+                        "{activePosition}"
                     </p>
                 </div>
 
@@ -85,23 +94,23 @@ export default function ResultCard({ styleData, onReset }: ResultCardProps) {
                 <div className="relative z-10 w-full bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-white/50 space-y-3">
                     <div className="bg-slate-100 rounded-lg p-3 text-center">
                         <p className="text-sm font-medium text-slate-700 break-keep leading-snug">
-                            {styleData.description}
+                            {activeDescription}
                         </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 text-xs">
                         <div className="space-y-1">
-                            <span className="font-bold text-sky-600 block">Good For</span>
+                            <span className="font-bold text-sky-600 block">{t('goodFor')}</span>
                             <div className="flex flex-wrap gap-1">
-                                {styleData.tags.map(t => (
+                                {activeTags.map(t => (
                                     <span key={t} className="bg-sky-50 text-sky-700 px-1.5 py-0.5 rounded-md">#{t}</span>
                                 ))}
                             </div>
                         </div>
                         <div className="space-y-1 border-l pl-2 border-slate-200">
-                            <span className="font-bold text-rose-500 block">Avoid If</span>
+                            <span className="font-bold text-rose-500 block">{t('avoidIf')}</span>
                             <div className="flex flex-wrap gap-1">
-                                {styleData.badMatch.map(t => (
+                                {activeBadMatch.map(t => (
                                     <span key={t} className="bg-rose-50 text-rose-600 px-1.5 py-0.5 rounded-md">#{t}</span>
                                 ))}
                             </div>
@@ -111,7 +120,7 @@ export default function ResultCard({ styleData, onReset }: ResultCardProps) {
 
                 {/* Footer */}
                 <div className="relative z-10 text-[10px] text-slate-400 font-mono mt-2">
-                    HairFit AI Consulting
+                    {t('hairFitConsulting')}
                 </div>
             </div>
 
@@ -122,25 +131,25 @@ export default function ResultCard({ styleData, onReset }: ResultCardProps) {
                     className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold h-12 rounded-xl shadow-lg shadow-indigo-500/20"
                 >
                     <Download className="w-5 h-5 mr-2" />
-                    카드 저장하기
+                    {t('saveCard')}
                 </Button>
 
                 <div className="grid grid-cols-2 gap-3">
                     <Button
                         variant="secondary"
                         onClick={handleShare}
-                        className="w-full h-12 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/10"
+                        className="w-full h-12 rounded-xl bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10"
                     >
                         <Share2 className="w-4 h-4 mr-2" />
-                        공유하기
+                        {t('share')}
                     </Button>
                     <Button
                         variant="outline"
                         onClick={onReset}
-                        className="w-full h-12 rounded-xl border-white/10 hover:bg-white/5 text-slate-200"
+                        className="w-full h-12 rounded-xl border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/5 text-slate-600 dark:text-slate-200"
                     >
                         <RotateCcw className="w-4 h-4 mr-2" />
-                        다시 하기
+                        {t('retry')}
                     </Button>
                 </div>
             </div>

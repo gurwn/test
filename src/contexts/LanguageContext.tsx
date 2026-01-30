@@ -79,6 +79,15 @@ export const translations = {
         'reason_length_grow': 'Good long option',
         'reason_length_keep': 'Maintains current length',
 
+        // Result Card UI
+        goodFor: 'Good For',
+        avoidIf: 'Avoid If',
+        saveCard: 'Save Card',
+        share: 'Share',
+        retry: 'Retry',
+        hairFitTypeIndicator: 'HairFit Type Indicator',
+        hairFitConsulting: 'HairFit AI Consulting',
+
         // Landing Page
         landingTitle1: 'Find Your',
         landingTitle2: 'Perfect Fit',
@@ -178,6 +187,15 @@ export const translations = {
         'reason_length_cut': '원하시는 짧은 스타일이에요',
         'reason_length_grow': '원하시는 긴 스타일이에요',
         'reason_length_keep': '현재 기장을 유지해요',
+
+        // Result Card UI
+        goodFor: '추천 대상',
+        avoidIf: '비추천 대상',
+        saveCard: '카드 저장하기',
+        share: '공유하기',
+        retry: '다시 하기',
+        hairFitTypeIndicator: 'HairFit Type Indicator',
+        hairFitConsulting: 'HairFit AI Consulting',
 
         // Landing Page
         landingTitle1: '나만의',
