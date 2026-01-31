@@ -1,12 +1,7 @@
 "use client";
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion";
+
 
 export default function HomeContent() {
     const { t } = useLanguage();
@@ -48,23 +43,45 @@ export default function HomeContent() {
                 </div>
             </section>
 
-            {/* 3. FAQ */}
             <section className="space-y-6">
                 <h2 className="text-2xl font-bold text-center">{t('faqTitle')}</h2>
-                <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="item-1">
-                        <AccordionTrigger>{t('faq1Q')}</AccordionTrigger>
-                        <AccordionContent>{t('faq1A')}</AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-2">
-                        <AccordionTrigger>{t('faq2Q')}</AccordionTrigger>
-                        <AccordionContent>{t('faq2A')}</AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-3">
-                        <AccordionTrigger>{t('faq3Q')}</AccordionTrigger>
-                        <AccordionContent>{t('faq3A')}</AccordionContent>
-                    </AccordionItem>
-                </Accordion>
+                <div className="w-full space-y-4">
+                    <details className="group bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <summary className="flex cursor-pointer items-center justify-between font-medium p-4 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors list-none">
+                            {t('faq1Q')}
+                            <span className="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div className="p-4 pt-0 text-muted-foreground text-sm leading-relaxed">
+                            {t('faq1A')}
+                        </div>
+                    </details>
+
+                    <details className="group bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <summary className="flex cursor-pointer items-center justify-between font-medium p-4 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors list-none">
+                            {t('faq2Q')}
+                            <span className="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div className="p-4 pt-0 text-muted-foreground text-sm leading-relaxed">
+                            {t('faq2A')}
+                        </div>
+                    </details>
+
+                    <details className="group bg-slate-50 dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden">
+                        <summary className="flex cursor-pointer items-center justify-between font-medium p-4 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors list-none">
+                            {t('faq3Q')}
+                            <span className="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <div className="p-4 pt-0 text-muted-foreground text-sm leading-relaxed">
+                            {t('faq3A')}
+                        </div>
+                    </details>
+                </div>
             </section>
         </div>
     );
