@@ -737,7 +737,7 @@ export const translations = {
                 maintenanceTip: 'เคล็ดลับการดูแล',
                 otherRecs: 'คำแนะนำอื่นๆ',
             }
-        },
+        };
 
         export function LanguageProvider({ children }: { children: React.ReactNode }) {
             const [language, setLanguage] = useState<Language>('ko'); // Default to Korean as requested
