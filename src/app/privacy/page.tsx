@@ -52,55 +52,188 @@ export default function PrivacyPage() {
                 },
                 {
                     title: "2. Items of Personal Information Processed",
-                    body: "The Service processes the following items of personal information:",
+                    body: "The Service processes the following personal information items.",
                     items: [
-                        "Required: Access logs, cookies, IP address (Service usage records)",
-                        "Optional: Uploaded photos (Deleted immediately after analysis and not saved on server)"
+                        "Required items: Access logs, cookies, IP addresses (Service usage records)",
+                        "Optional items: Uploaded photos (deleted immediately after analysis and not saved to server)"
                     ]
                 },
                 {
                     title: "3. Destruction of Personal Information",
-                    body: "The Service destroys personal information without delay when the personal information becomes unnecessary, such as the expiration of the retention period or achievement of the processing purpose. In particular, uploaded user photos are used for analysis purposes only within the browser (local) and are not transmitted to or stored on the server."
+                    body: "The Service destroys personal information without delay when it becomes unnecessary, such as when the retention period expires or the purpose of processing is achieved. In particular, uploaded user photos are used for analysis purposes only within the browser (local) and are not transmitted or saved to the server."
                 },
                 {
                     title: "4. Data Protection Officer",
-                    body: "The Service designates the following Data Protection Officer to oversee personal information processing and handle complaints and damage relief related to personal information processing.",
+                    body: "The Service designates the following Data Protection Officer to oversee personal information processing and handle user complaints:",
                     box: "Email: ehlee8962@gmail.com"
                 }
             ],
-            date: "Effective Date: January 30, 2026"
+            date: "Announcement Date: January 30, 2026 / Effective Date: January 30, 2026"
+        },
+        ja: {
+            title: "プライバシーポリシー",
+            sections: [
+                {
+                    title: "1. 個人情報の処理目的",
+                    body: "HairFit（以下「サービス」）は、次の目的のために個人情報を処理します。処理している個人情報は、次の目的以外の用途には利用されず、利用目的が変更される場合には別途同意を得るなど必要な措置を履行する予定です。",
+                    items: [
+                        "サービスの提供およびコンテンツの利用",
+                        "会員管理および本人確認（将来の会員登録導入時）",
+                        "新規サービス開発およびマーケティング広告への活用"
+                    ]
+                },
+                {
+                    title: "2. 処理する個人情報の項目",
+                    body: "サービスは、次の個人情報項目を処理しています。",
+                    items: [
+                        "必須項目：アクセスログ、Cookie、IPアドレス（サービス利用記録）",
+                        "選択項目：アップロードされた写真（分析後すぐに削除され、サーバーに保存されません）"
+                    ]
+                },
+                {
+                    title: "3. 個人情報の破棄",
+                    body: "サービスは、個人情報保有期間の経過、処理目的達成など個人情報が不要になったときは、遅滞なく当該個人情報を破棄します。特にアップロードされたユーザー写真は、ブラウザ（ローカル）内でのみ分析目的で使用され、サーバーに送信または保存されません。"
+                },
+                {
+                    title: "4. 個人情報保護責任者",
+                    body: "サービスは、個人情報処理に関する業務を総括し、ユーザーの苦情処理および被害救済などのために、以下の通り個人情報保護責任者を指定しています。",
+                    box: "メール：ehlee8962@gmail.com"
+                }
+            ],
+            date: "公告日：2026年1月30日 / 施行日：2026年1月30日"
+        },
+        zh: {
+            title: "隐私政策",
+            sections: [
+                {
+                    title: "1. 个人信息处理目的",
+                    body: "HairFit（以下简称“服务”）为以下目的处理个人信息。所处理的个人信息不会用于以下目的以外的用途，如果使用目的发生变更，将根据相关法律履行获得单独同意等必要措施。",
+                    items: [
+                        "提供服务及内容使用",
+                        "会员管理及身份验证（未来引入会员注册时）",
+                        "新服务开发及营销广告的使用"
+                    ]
+                },
+                {
+                    title: "2. 处理的个人信息项目",
+                    body: "服务正在处理以下个人信息项目。",
+                    items: [
+                        "必填项目：访问日志、Cookie、IP地址（服务使用记录）",
+                        "选填项目：上传的照片（分析后立即删除，不保存到服务器）"
+                    ]
+                },
+                {
+                    title: "3. 个人信息的销毁",
+                    body: "当个人信息持有期届满、处理目的达成等不再需要个人信息时，服务将立即销毁该个人信息。特别是上传的用户照片仅在浏览器（本地）内用于分析目的，不会传输或保存到服务器。"
+                },
+                {
+                    title: "4. 个人信息保护负责人",
+                    body: "服务为了统筹个人信息处理相关业务，处理用户投诉及损害赔偿等，指定了如下个人信息保护负责人。",
+                    box: "邮箱：ehlee8962@gmail.com"
+                }
+            ],
+            date: "公告日期：2026年1月30日 / 生效日期：2026年1月30日"
+        },
+        vn: {
+            title: "Chính sách quyền riêng tư",
+            sections: [
+                {
+                    title: "1. Mục đích xử lý thông tin cá nhân",
+                    body: "HairFit ('Dịch vụ') xử lý thông tin cá nhân cho các mục đích sau. Thông tin cá nhân đang được xử lý sẽ không được sử dụng cho bất kỳ mục đích nào khác ngoài các mục đích sau, và nếu mục đích sử dụng thay đổi, các biện pháp cần thiết như lấy sự đồng ý riêng sẽ được thực hiện.",
+                    items: [
+                        "Cung cấp dịch vụ và sử dụng nội dung",
+                        "Quản lý thành viên và xác minh danh tính (khi đăng ký thành viên trong tương lai)",
+                        "Phát triển dịch vụ mới và sử dụng cho tiếp thị/quảng cáo"
+                    ]
+                },
+                {
+                    title: "2. Các mục thông tin cá nhân được xử lý",
+                    body: "Dịch vụ đang xử lý các mục thông tin cá nhân sau.",
+                    items: [
+                        "Mục bắt buộc: Nhật ký truy cập, Cookie, Địa chỉ IP (Hồ sơ sử dụng dịch vụ)",
+                        "Mục tùy chọn: Ảnh đã tải lên (bị xóa ngay sau khi phân tích và không lưu trên máy chủ)"
+                    ]
+                },
+                {
+                    title: "3. Hủy bỏ thông tin cá nhân",
+                    body: "Dịch vụ sẽ hủy bỏ thông tin cá nhân ngay lập tức khi thông tin cá nhân trở nên không cần thiết, chẳng hạn như khi hết thời hạn lưu giữ hoặc đạt được mục đích xử lý. Đặc biệt, ảnh người dùng tải lên chỉ được sử dụng cho mục đích phân tích trong trình duyệt (cục bộ) và không được truyền hoặc lưu vào máy chủ."
+                },
+                {
+                    title: "4. Cán bộ bảo vệ dữ liệu",
+                    body: "Dịch vụ chỉ định Cán bộ bảo vệ dữ liệu sau đây để giám sát việc xử lý thông tin cá nhân và giải quyết khiếu nại của người dùng:",
+                    box: "Email: ehlee8962@gmail.com"
+                }
+            ],
+            date: "Ngày thông báo: 30 tháng 1 năm 2026 / Ngày hiệu lực: 30 tháng 1 năm 2026"
+        },
+        th: {
+            title: "นโยบายความเป็นส่วนตัว",
+            sections: [
+                {
+                    title: "1. วัตถุประสงค์ของการประมวลผลข้อมูลส่วนบุคคล",
+                    body: "HairFit ('บริการ') ประมวลผลข้อมูลส่วนบุคคลเพื่อวัตถุประสงค์ดังต่อไปนี้ ข้อมูลส่วนบุคคลที่ประมวลผลจะไม่ถูกนำไปใช้เพื่อวัตถุประสงค์อื่นใดนอกจากที่ระบุไว้ และหากวัตถุประสงค์การใช้งานมีการเปลี่ยนแปลง จะมีการดำเนินการตามมาตรการที่จำเป็น เช่น การขอความยินยอมแยกต่างหาก",
+                    items: [
+                        "การให้บริการและการใช้งานเนื้อหา",
+                        "การจัดการสมาชิกและการยืนยันตัวตน (เมื่อมีการลงทะเบียนในอนาคต)",
+                        "การพัฒนาบริการใหม่และการใช้เพื่อการตลาด/โฆษณา"
+                    ]
+                },
+                {
+                    title: "2. รายการข้อมูลส่วนบุคคลที่ประมวลผล",
+                    body: "บริการกำลังประมวลผลรายการข้อมูลส่วนบุคคลดังต่อไปนี้",
+                    items: [
+                        "รายการจำเป็น: บันทึกการเข้าถึง, คุกกี้, ที่อยู่ IP (บันทึกการใช้บริการ)",
+                        "รายการทางเลือก: รูปภาพที่อัปโหลด (ลบออกทันทีหลังการวิเคราะห์และไม่บันทึกบนเซิร์ฟเวอร์)"
+                    ]
+                },
+                {
+                    title: "3. การทำลายข้อมูลส่วนบุคคล",
+                    body: "บริการจะทำลายข้อมูลส่วนบุคคลทันทีเมื่อข้อมูลส่วนบุคคลนั้นไม่มีความจำเป็นอีกต่อไป เช่น เมื่อหมดระยะเวลาการเก็บรักษาหรือบรรลุวัตถุประสงค์ในการประมวลผล โดยเฉพาะอย่างยิ่ง รูปภาพผู้ใช้ที่อัปโหลดจะถูกใช้เพื่อวัตถุประสงค์ในการวิเคราะห์ภายในเบราว์เซอร์ (ในเครื่อง) เท่านั้น และจะไม่ถูกส่งหรือบันทึกไปยังเซิร์ฟเวอร์"
+                },
+                {
+                    title: "4. เจ้าหน้าที่คุ้มครองข้อมูล",
+                    body: "บริการได้แต่งตั้งเจ้าหน้าที่คุ้มครองข้อมูลต่อไปนี้เพื่อดูแลการประมวลผลข้อมูลส่วนบุคคลและจัดการข้อร้องเรียนของผู้ใช้:",
+                    box: "อีเมล: ehlee8962@gmail.com"
+                }
+            ],
+            date: "วันที่ประกาศ: 30 มกราคม 2026 / วันที่มีผลบังคับใช้: 30 มกราคม 2026"
         }
     };
 
-    const activeContent = language === 'ko' ? content.ko : content.en;
+    // @ts-ignore
+    const t = content[language] || content['en'];
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-3xl">
-            <h1 className="text-3xl font-bold mb-8">{activeContent.title}</h1>
+        <div className="container mx-auto px-6 py-12 max-w-4xl">
+            <h1 className="text-3xl font-bold mb-8 text-slate-900 dark:text-white">{t.title}</h1>
 
-            <div className="space-y-6 text-sm text-muted-foreground leading-relaxed">
-                {activeContent.sections.map((section, idx) => (
-                    <section key={idx}>
-                        <h2 className="text-lg font-bold text-foreground mb-2">{section.title}</h2>
-                        <p>{section.body}</p>
+            <div className="space-y-8">
+                {t.sections.map((section: any, index: number) => (
+                    <section key={index} className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <h2 className="text-xl font-bold mb-4 text-indigo-600 dark:text-indigo-400">
+                            {section.title}
+                        </h2>
+                        <p className="text-slate-600 dark:text-slate-300 whitespace-pre-line leading-relaxed">
+                            {section.body}
+                        </p>
                         {section.items && (
-                            <ul className="list-disc pl-5 mt-2 space-y-1">
-                                {section.items.map((item, i) => (
+                            <ul className="mt-4 list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300">
+                                {section.items.map((item: string, i: number) => (
                                     <li key={i}>{item}</li>
                                 ))}
                             </ul>
                         )}
                         {section.box && (
-                            <div className="mt-2 p-4 bg-muted/50 rounded-lg">
-                                <p>{section.box}</p>
+                            <div className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg text-slate-700 dark:text-slate-300 font-medium">
+                                {section.box}
                             </div>
                         )}
                     </section>
                 ))}
+            </div>
 
-                <p className="text-xs pt-8 border-t border-border">
-                    {activeContent.date}
-                </p>
+            <div className="mt-12 text-sm text-slate-500 text-right">
+                {t.date}
             </div>
         </div>
     );

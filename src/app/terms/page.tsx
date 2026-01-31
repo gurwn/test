@@ -3,7 +3,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function TermsPage() {
-    const { language, t } = useLanguage();
+    const { language } = useLanguage();
 
     const content = {
         ko: {
@@ -51,43 +51,154 @@ export default function TermsPage() {
                 },
                 {
                     title: "Article 3 (Disclaimer)",
-                    body: "The analysis results and recommended styles provided by the Company are predictions based on AI algorithms and may differ from actual results. The Company does not take legal responsibility for these results."
+                    body: "The analysis results and recommended styles provided by the Company are estimates based on AI algorithms and may differ from actual results. The Company is not legally liable for them."
                 },
                 {
                     title: "Article 4 (Copyright)",
-                    body: "The copyright for all content (images, text, analysis logic, etc.) provided by the Service belongs to the Company. Users may not reproduce or distribute this content for commercial purposes without permission."
+                    body: "Copyright for all content (images, text, analysis logic, etc.) provided by the service belongs to the Company. Users may not copy or distribute it for commercial purposes without permission."
                 }
             ],
             date: "Effective Date: January 30, 2026"
+        },
+        ja: {
+            title: "利用規約",
+            sections: [
+                {
+                    title: "第1条（目的）",
+                    body: "本規約は、HairFit（以下「当社」）が提供するヘアスタイル推奨および仮想体験サービス（以下「サービス」）の利用条件および手続き、当社と会員間の権利、義務および責任事項などを規定することを目的とします。"
+                },
+                {
+                    title: "第2条（サービスの内容）",
+                    body: "当社が提供するサービスの内容は以下の通りです。",
+                    items: [
+                        "AIベースの顔型分析サービス",
+                        "顔型に基づくヘアスタイル推奨サービス",
+                        "仮想ヘア合成のためのAI画像生成サービス（有料）"
+                    ]
+                },
+                {
+                    title: "第3条（免責条項）",
+                    body: "当社が提供する分析結果および推奨スタイルはAIアルゴリズムに基づく予測値であり、実際の結果と異なる場合があり、これに対する法的責任を負いません。"
+                },
+                {
+                    title: "第4条（著作権）",
+                    body: "サービスで提供するすべてのコンテンツ（画像、テキスト、分析ロジックなど）の著作権は当社に帰属します。ユーザーはこれを営利目的で無断複製、配布することはできません。"
+                }
+            ],
+            date: "施行日：2026年1月30日"
+        },
+        zh: {
+            title: "服务条款",
+            sections: [
+                {
+                    title: "第1条（目的）",
+                    body: "本条款旨在规定HairFit（以下简称“公司”）提供的发型推荐及虚拟体验服务（以下简称“服务”）的使用条件及程序，公司与会员之间的权利、义务及责任事项等。"
+                },
+                {
+                    title: "第2条（服务内容）",
+                    body: "公司提供的服务内容如下。",
+                    items: [
+                        "基于AI的脸型分析服务",
+                        "基于脸型的发型推荐服务",
+                        "用于虚拟头发合成的AI图像生成服务（付费）"
+                    ]
+                },
+                {
+                    title: "第3条（免责条款）",
+                    body: "公司提供的分析结果及推荐风格是基于AI算法的预测值，可能与实际结果有所不同，对此不承担法律责任。"
+                },
+                {
+                    title: "第4条（版权）",
+                    body: "服务提供的所有内容（图像、文本、分析逻辑等）的版权归公司所有。用户不得出于盈利目的擅自复制、分发。"
+                }
+            ],
+            date: "生效日期：2026年1月30日"
+        },
+        vn: {
+            title: "Điều khoản dịch vụ",
+            sections: [
+                {
+                    title: "Điều 1 (Mục đích)",
+                    body: "Các Điều khoản này nhằm quy định các điều kiện và thủ tục sử dụng, quyền, nghĩa vụ và trách nhiệm giữa HairFit (sau đây gọi là \"Công ty\") và các thành viên liên quan đến dịch vụ đề xuất kiểu tóc và trải nghiệm ảo (sau đây gọi là \"Dịch vụ\") do Công ty cung cấp."
+                },
+                {
+                    title: "Điều 2 (Nội dung dịch vụ)",
+                    body: "Các dịch vụ do Công ty cung cấp như sau:",
+                    items: [
+                        "Dịch vụ phân tích khuôn mặt dựa trên AI",
+                        "Dịch vụ đề xuất kiểu tóc dựa trên hình dạng khuôn mặt",
+                        "Dịch vụ tạo hình ảnh AI để tổng hợp tóc ảo (Trả phí)"
+                    ]
+                },
+                {
+                    title: "Điều 3 (Miễn trừ trách nhiệm)",
+                    body: "Kết quả phân tích và các kiểu tóc được đề xuất bởi Công ty là các ước tính dựa trên thuật toán AI và có thể khác với kết quả thực tế. Công ty không chịu trách nhiệm pháp lý về chúng."
+                },
+                {
+                    title: "Điều 4 (Bản quyền)",
+                    body: "Bản quyền đối với tất cả nội dung (hình ảnh, văn bản, logic phân tích, v.v.) được cung cấp bởi dịch vụ thuộc về Công ty. Người dùng không được sao chép hoặc phân phối cho mục đích thương mại mà không có sự cho phép."
+                }
+            ],
+            date: "Ngày hiệu lực: 30 tháng 1 năm 2026"
+        },
+        th: {
+            title: "ข้อกำหนดการใช้บริการ",
+            sections: [
+                {
+                    title: "ข้อ 1 (วัตถุประสงค์)",
+                    body: "ข้อกำหนดและเงื่อนไขเหล่านี้มีวัตถุประสงค์เพื่อกำหนดข้อกำหนดและเงื่อนไขการใช้งาน สิทธิ หน้าที่ และความรับผิดชอบระหว่าง HairFit (ซึ่งต่อไปนี้จะเรียกว่า \"บริษัท\") และสมาชิก เกี่ยวกับบริการแนะนำทรงผมและประสบการณ์เสมือนจริง (ซึ่งต่อไปนี้จะเรียกว่า \"บริการ\") ที่จัดให้โดยบริษัท"
+                },
+                {
+                    title: "ข้อ 2 (เนื้อหาบริการ)",
+                    body: "บริการที่บริษัทจัดให้มีดังนี้:",
+                    items: [
+                        "บริการวิเคราะห์รูปหน้าด้วย AI",
+                        "บริการแนะนำทรงผมตามรูปหน้า",
+                        "บริการสร้างภาพ AI สำหรับการสังเคราะห์ผมเสมือนจริง (มีค่าใช้จ่าย)"
+                    ]
+                },
+                {
+                    title: "ข้อ 3 (ข้อปฏิเสธความรับผิดชอบ)",
+                    body: "ผลการวิเคราะห์และสไตล์ที่แนะนำโดยบริษัทเป็นการคาดการณ์โดยใช้อัลกอริธ AI และอาจแตกต่างจากผลลัพธ์จริง บริษัทไม่รับผิดชอบทางกฎหมายใดๆ"
+                },
+                {
+                    title: "ข้อ 4 (ลิขสิทธิ์)",
+                    body: "ลิขสิทธิ์สำหรับเนื้อหาทั้งหมด (รูปภาพ ข้อความ ลอจิกการวิเคราะห์ ฯลฯ) ที่ให้บริการเป็นของบริษัท ผู้ใช้ไม่สามารถคัดลอกหรือเผยแพร่เพื่อวัตถุประสงค์ทางการค้าโดยไม่ได้รับอนุญาต"
+                }
+            ],
+            date: "วันที่มีผลบังคับใช้: 30 มกราคม 2026"
         }
     };
 
-    // Default to EN for other languages for now, or use mapped language if available
-    // For simplicity in MVP, we map KO to KO, and everything else to EN
-    const activeContent = language === 'ko' ? content.ko : content.en;
+    // @ts-ignore
+    const t = content[language] || content['en'];
 
     return (
-        <div className="container mx-auto px-4 py-12 max-w-3xl">
-            <h1 className="text-3xl font-bold mb-8">{activeContent.title}</h1>
+        <div className="container mx-auto px-6 py-12 max-w-4xl">
+            <h1 className="text-3xl font-bold mb-8 text-slate-900 dark:text-white">{t.title}</h1>
 
-            <div className="space-y-6 text-sm text-muted-foreground leading-relaxed">
-                {activeContent.sections.map((section, idx) => (
-                    <section key={idx}>
-                        <h2 className="text-lg font-bold text-foreground mb-2">{section.title}</h2>
-                        <p>{section.body}</p>
+            <div className="space-y-8">
+                {t.sections.map((section: any, index: number) => (
+                    <section key={index} className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <h2 className="text-xl font-bold mb-4 text-indigo-600 dark:text-indigo-400">
+                            {section.title}
+                        </h2>
+                        <p className="text-slate-600 dark:text-slate-300 whitespace-pre-line leading-relaxed">
+                            {section.body}
+                        </p>
                         {section.items && (
-                            <ul className="list-disc pl-5 mt-2 space-y-1">
-                                {section.items.map((item, i) => (
+                            <ul className="mt-4 list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300">
+                                {section.items.map((item: string, i: number) => (
                                     <li key={i}>{item}</li>
                                 ))}
                             </ul>
                         )}
                     </section>
                 ))}
+            </div>
 
-                <p className="text-xs pt-8 border-t border-border">
-                    {activeContent.date}
-                </p>
+            <div className="mt-12 text-sm text-slate-500 text-right">
+                {t.date}
             </div>
         </div>
     );

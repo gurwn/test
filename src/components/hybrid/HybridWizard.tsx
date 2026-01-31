@@ -249,12 +249,19 @@ export default function HybridWizard() {
         return (
             <div className="space-y-6 animate-in fade-in slide-in-from-right-4 w-full max-w-md">
                 <div className="flex justify-between items-center text-sm text-muted-foreground mb-4">
-                    <span>{gender === 'male' ? t('styleCheck') : t('myStyleCheck')}</span>
+                    <div className="flex items-center gap-2">
+                        {step > 3 && (
+                            <button onClick={() => setStep(step - 1)} className="hover:text-indigo-400 transition-colors">
+                                ←
+                            </button>
+                        )}
+                        <span>{gender === 'male' ? t('styleCheck') : t('myStyleCheck')}</span>
+                    </div>
                     <span>{qIndex + 1 + (step === 2 ? 1 : 1)} / {activeQuestions.length + 1}</span>
                 </div>
 
                 <h2 className="text-2xl font-bold mb-8">
-                    {(isKo && q.titleKo) ? q.titleKo : q.title}
+                    {t(`${gender === 'male' ? 'sm' : 'sf'}_q${qIndex + 1}_title`)}
                 </h2>
 
                 <div className="grid gap-3">
@@ -265,10 +272,10 @@ export default function HybridWizard() {
                             className="w-full p-4 text-left bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 rounded-xl transition-all group"
                         >
                             <div className="font-bold text-lg mb-1 text-slate-900 dark:text-slate-100 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors">
-                                {(isKo && opt.labelKo) ? opt.labelKo : opt.label}
+                                {t(`${gender === 'male' ? 'sm' : 'sf'}_q${qIndex + 1}_opt_${opt.value}`)}
                             </div>
                             <div className="text-sm text-slate-500 dark:text-muted-foreground">
-                                {(isKo && opt.descriptionKo) ? opt.descriptionKo : opt.description}
+                                {t(`${gender === 'male' ? 'sm' : 'sf'}_q${qIndex + 1}_opt_${opt.value}_desc`)}
                             </div>
                         </button>
                     ))}
