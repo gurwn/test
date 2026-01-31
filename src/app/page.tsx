@@ -10,7 +10,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import HomeContent from "@/components/home/HomeContent";
 
 export default function Home() {
   const { t, language, setLanguage } = useLanguage();
@@ -105,6 +107,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
+
+      {/* SEO Content Section */ }
+  <HomeContent />
+    </main >
   );
 }

@@ -196,7 +196,7 @@ export default function HybridWizard() {
                 )}
 
                 {/* AD UNIT */}
-                <GoogleAdSense slot="1234567890" />
+
             </div>
         );
     }
@@ -369,7 +369,7 @@ export default function HybridWizard() {
                 )}
 
                 {/* AD UNIT - Result Page (Bottom) */}
-                <GoogleAdSense slot="1234567890" />
+
 
                 <SubscriptionModal isOpen={showPremiumModal} onClose={() => setShowPremiumModal(false)} />
             </div>
