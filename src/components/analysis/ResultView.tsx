@@ -38,7 +38,23 @@ export default function ResultView() {
         setSelectedStyle(recs.recommended[0]); // Default to #1
     }, [router]);
 
-    if (!profile || !results || !selectedStyle) return null;
+    // If no profile (direct access or cleared cache), show "Start Analysis" instead of empty page
+    if (!profile || !results || !selectedStyle) {
+        return (
+            <div className="max-w-md mx-auto min-h-screen flex flex-col items-center justify-center p-6 text-center space-y-6">
+                <div className="w-24 h-24 bg-secondary/50 rounded-full flex items-center justify-center animate-pulse">
+                    <Sparkles className="w-10 h-10 text-muted-foreground" />
+                </div>
+                <div className="space-y-2">
+                    <h2 className="text-xl font-bold">{t('analysisResult')}</h2>
+                    <p className="text-muted-foreground">{t('step1Desc')}</p>
+                </div>
+                <Button onClick={() => router.push('/')} size="lg" className="w-full bg-indigo-600 hover:bg-indigo-700">
+                    {t('startAnalysis')}
+                </Button>
+            </div>
+        );
+    }
 
     const toggleLanguage = () => {
         setLanguage(language === 'ko' ? 'en' : 'ko');
