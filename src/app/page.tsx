@@ -10,7 +10,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import HomeContent from "@/components/home/HomeContent";
 import HybridWizard from "@/components/hybrid/HybridWizard";
@@ -99,10 +98,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
 
-      {/* SEO Content Section */ }
-  <HomeContent />
+      {/* SEO Content Section */}
+      <HomeContent />
     </main >
   );
 }
