@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import HomeContent from "@/components/home/HomeContent";
+import HybridWizard from "@/components/hybrid/HybridWizard";
 
 export default function Home() {
   const { t, language, setLanguage } = useLanguage();
@@ -73,17 +74,8 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="space-y-4 pt-8">
-          <Link href="/analyze" className="w-full block">
-            <Button size="lg" className="w-full h-14 text-lg font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all transform hover:scale-[1.02]">
-              {t('startAnalysis')}
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-          </Link>
-
-          <p className="text-xs text-muted-foreground/60">
-            {t('dataPrivacy')}
-          </p>
+        <div className="pt-4">
+          <HybridWizard />
         </div>
 
         <div className="grid grid-cols-3 gap-4 pt-12 border-t border-border/40">
