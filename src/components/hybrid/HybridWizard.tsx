@@ -300,6 +300,7 @@ export default function HybridWizard() {
                 <ResultCard
                     styleData={styleData}
                     onReset={() => window.location.reload()}
+                    scores={analysisResult?.scores}
                 />
 
                 {/* AI Analysis Breakdown */}

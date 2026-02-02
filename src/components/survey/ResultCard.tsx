@@ -6,13 +6,15 @@ import { HairStyle } from '@/lib/survey/types';
 import { Button } from '@/components/ui/button';
 import { Download, RotateCcw, Share2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import FaceAnalysisChart from '@/components/feature/FaceAnalysisChart';
 
 interface ResultCardProps {
     styleData: HairStyle;
     onReset: () => void;
+    scores?: Record<string, number>;
 }
 
-export default function ResultCard({ styleData, onReset }: ResultCardProps) {
+export default function ResultCard({ styleData, onReset, scores }: ResultCardProps) {
     const cardRef = useRef<HTMLDivElement>(null);
     const { t, language } = useLanguage();
     const isKo = language === 'ko';
@@ -118,10 +120,67 @@ export default function ResultCard({ styleData, onReset }: ResultCardProps) {
                     </div>
                 </div>
 
-                {/* Footer */}
-                <div className="relative z-10 text-[10px] text-slate-400 font-mono mt-2">
-                    {t('hairFitConsulting')}
+            </div>
+
+            {/* --- New: Detailed Analysis Report --- */}
+            <div className="w-full bg-white rounded-2xl p-5 shadow-sm space-y-4">
+                <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <span>📝</span> {t('detailedReport')}
+                </h3>
+
+                {scores && (
+                    <div className="mb-4">
+                        <FaceAnalysisChart scores={scores as any} />
+                    </div>
+                )}
+
+                {/* Expert Comment */}
+                <div className="space-y-2">
+                    <div className="text-xs font-bold text-indigo-600 uppercase tracking-wider">{t('expertComment')}</div>
+                    <p className="text-sm text-slate-600 leading-relaxed text-justify break-keep">
+                        {isKo ? styleData.expertComment?.ko :
+                            language === 'ja' ? styleData.expertComment?.ja :
+                                language === 'zh' ? styleData.expertComment?.zh :
+                                    language === 'vn' ? styleData.expertComment?.vn :
+                                        language === 'th' ? styleData.expertComment?.th :
+                                            styleData.expertComment?.en}
+                    </p>
                 </div>
+
+                <div className="h-px bg-slate-100" />
+
+                {/* Styling Guide */}
+                <div className="space-y-2">
+                    <div className="text-xs font-bold text-rose-500 uppercase tracking-wider">{t('stylingTip')}</div>
+                    <div className="text-sm text-slate-600 leading-relaxed break-keep whitespace-pre-line bg-slate-50 p-3 rounded-lg border border-slate-100">
+                        {isKo ? styleData.stylingGuide?.ko :
+                            language === 'ja' ? styleData.stylingGuide?.ja :
+                                language === 'zh' ? styleData.stylingGuide?.zh :
+                                    language === 'vn' ? styleData.stylingGuide?.vn :
+                                        language === 'th' ? styleData.stylingGuide?.th :
+                                            styleData.stylingGuide?.en}
+                    </div>
+                </div>
+
+                <div className="h-px bg-slate-100" />
+
+                {/* Maintenance */}
+                <div className="space-y-2">
+                    <div className="text-xs font-bold text-emerald-600 uppercase tracking-wider">{t('maintenanceTip')}</div>
+                    <p className="text-sm text-slate-600 leading-relaxed break-keep">
+                        {isKo ? styleData.maintenance?.ko :
+                            language === 'ja' ? styleData.maintenance?.ja :
+                                language === 'zh' ? styleData.maintenance?.zh :
+                                    language === 'vn' ? styleData.maintenance?.vn :
+                                        language === 'th' ? styleData.maintenance?.th :
+                                            styleData.maintenance?.en}
+                    </p>
+                </div>
+            </div>
+
+            {/* Footer */}
+            <div className="relative z-10 text-[10px] text-slate-400 font-mono mt-2 text-center">
+                {t('hairFitConsulting')}
             </div>
 
             {/* --- Action Buttons --- */}
@@ -154,6 +213,6 @@ export default function ResultCard({ styleData, onReset }: ResultCardProps) {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 }

@@ -1,10 +1,12 @@
 "use client";
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import Link from 'next/link';
+import { useLanguage, Language } from '@/contexts/LanguageContext';
+import { BLOG_POSTS } from '@/lib/blog/posts';
 
 
 export default function HomeContent() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     return (
         <div className="max-w-3xl mx-auto px-6 py-16 space-y-24 text-left">
@@ -81,6 +83,40 @@ export default function HomeContent() {
                             {t('faq3A')}
                         </div>
                     </details>
+                </div>
+            </section>
+
+            {/* 3. Latest Articles (Blog Preview) */}
+            <section className="space-y-8 border-t border-slate-200 dark:border-white/10 pt-16">
+                <div className="flex justify-between items-center px-2">
+                    <h2 className="text-2xl font-bold">{t('latestArticles') || "Latest Articles"}</h2>
+                    <Link href="/blog" className="text-indigo-600 dark:text-indigo-400 font-bold text-sm hover:underline">
+                        View All →
+                    </Link>
+                </div>
+
+                <div className="grid gap-6 md:grid-cols-2">
+                    {/* Dynamic Blog Posts */}
+                    {BLOG_POSTS.slice(0, 2).map((post) => {
+                        const title = post.title[language] || post.title['en'];
+                        const excerpt = post.excerpt[language] || post.excerpt['en'];
+
+                        return (
+                            <Link key={post.slug} href={`/blog/${post.slug}`} className="group block bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-4 transition-all hover:shadow-lg hover:border-indigo-500">
+                                <div className="aspect-video rounded-xl bg-slate-100 mb-4 overflow-hidden">
+                                    <img
+                                        src={post.image}
+                                        alt={title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    />
+                                </div>
+                                <h3 className="font-bold text-lg mb-2 group-hover:text-indigo-500 transition-colors line-clamp-1">{title}</h3>
+                                <p className="text-sm text-muted-foreground line-clamp-2">
+                                    {excerpt}
+                                </p>
+                            </Link>
+                        );
+                    })}
                 </div>
             </section>
         </div>

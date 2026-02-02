@@ -120,16 +120,12 @@ export const translations = {
         simulateOnMyFace: 'Simulate on my face',
         requestTemplate: 'Salon Request Template',
         showDesigner: 'Show this screen to your designer.',
+        // Result Card UI
+        detailedReport: 'Detailed Analysis Report',
+        expertComment: 'Expert Comment',
+        stylingTip: 'Styling Guide',
         maintenanceTip: 'Maintenance Tip',
-        otherRecs: 'Other Recommendations',
-        // Face Shape Descriptions
-        desc_oval: 'Slim and balanced line like an egg',
-        desc_round: 'Round and soft impression',
-        desc_square: 'Strong, angular jawline',
-        desc_long: 'Longer vertical proportions',
-        desc_heart: 'Wide forehead, pointed chin',
-        desc_diamond: 'Prominent cheekbones, pointed chin',
-        desc_triangle: 'Jawline wider than forehead',
+
         termsOfService: 'Terms of Service',
         privacyPolicy: 'Privacy Policy',
 
@@ -145,6 +141,7 @@ export const translations = {
         whyHairFitTitle: 'Why HairFit?',
         seoText1: 'Finding the perfect hairstyle is hard. Have you ever been disappointed after bringing a celebrity photo to the salon? HairFit uses advanced AI to analyze objective data (face ratios, jaw angles) to find styles that maximize your charm.',
         seoText2: 'Check with HairFit before visiting the salon. Your best partner for a fail-proof makeover. Start now for free.',
+        latestArticles: 'Latest Articles',
         faqTitle: 'FAQ',
         faq1Q: 'Is it really free?',
         faq1A: 'Yes, basic analysis and recommendations are 100% free.',
@@ -217,6 +214,13 @@ export const translations = {
         subscribeTitle: "프리미엄 리포트 잠금 해제",
         subscribeDesc: "얼굴 비대칭 및 퍼스널 컬러 상세 분석을 확인하세요.",
         subscribeBtn: "구독하기 - 월 2,900원",
+
+        // Result Card UI
+        detailedReport: '상세 분석 리포트',
+        expertComment: '전문가 분석 코멘트',
+        stylingTip: '스타일링 가이드',
+        maintenanceTip: '관리 및 유지 팁',
+
         // Logic / Tags
         'clean': '깔끔한',
         'pro': '전문적인',
@@ -386,6 +390,7 @@ export const translations = {
         whyHairFitTitle: '왜 HairFit 인가요?',
         seoText1: '자신에게 어울리는 헤어스타일을 찾기란 쉽지 않습니다. 연예인 사진을 들고 미용실에 갔다가 실망한 적이 있으신가요? 헤어핏(HairFit)은 최신 AI 기술을 활용해 객관적인 데이터(얼굴 비율, 턱선 각도, 이마 넓이)를 기반으로 당신의 매력을 극대화할 수 있는 스타일을 찾아드립니다.',
         seoText2: '미용실에 가기 전, HairFit으로 미리 확인해 보세요. 실패 없는 스타일 변신을 위한 최고의 파트너가 되어드립니다. 지금 바로 무료로 시작해보세요.',
+        latestArticles: '최신 블로그',
         faqTitle: '자주 묻는 질문 (FAQ)',
         faq1Q: '정말 무료인가요?',
         faq1A: '네, 기본적인 얼굴 분석과 스타일 추천 기능은 100% 무료로 제공됩니다. 일부 프리미엄 심층 분석(비대칭 분석 등)만 유료입니다.',
@@ -567,6 +572,7 @@ export const translations = {
         whyHairFitTitle: 'なぜHairFitなのか？',
         seoText1: '自分に似合う髪型を見つけるのは難しいものです。芸能人の写真を持って美容室に行っても失敗したことはありませんか？HairFitは最新AI技術で客観的なデータ（顔の比率、顎の角度）に基づき、あなたの魅力を最大化するスタイルを見つけます。',
         seoText2: '美容室に行く前にHairFitで確認しましょう。失敗のないイメチェンのための最高のパートナーです。今すぐ無料でお試しください。',
+        latestArticles: '最新記事',
         faqTitle: 'よくある質問 (FAQ)',
         faq1Q: '本当に無料ですか？',
         faq1A: 'はい、基本的な顔分析とスタイル提案は100%無料です。一部のプレミアム深層分析のみ有料です。',

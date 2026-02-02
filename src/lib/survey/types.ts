@@ -27,7 +27,18 @@ export interface HairStyle {
     badMatchKo?: string[]; // "Avoid If" (Korean)
     imagePath: string;
     position: string;
-    positionKo?: string; // Add positionKo
+    positionKo?: string;
+
+    // Detailed Report Data (Multilingual)
+    expertComment?: {
+        ko: string; en: string; ja: string; zh: string; vn: string; th: string;
+    };
+    stylingGuide?: {
+        ko: string; en: string; ja: string; zh: string; vn: string; th: string;
+    };
+    maintenance?: {
+        ko: string; en: string; ja: string; zh: string; vn: string; th: string;
+    };
 }
 
 export type QuestionId = 'forehead' | 'vibe' | 'maintenance';
